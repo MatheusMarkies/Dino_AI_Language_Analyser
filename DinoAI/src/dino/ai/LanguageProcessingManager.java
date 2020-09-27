@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Matheus Markies
+ * @author Matheus Markies | matheus.markies@gmail.com
  */
 public class LanguageProcessingManager extends Thread{
     
