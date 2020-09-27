@@ -14,78 +14,67 @@ import java.util.logging.Logger;
  *
  * @author Matheus Markies
  */
-public class FormatResponseText extends Thread{
-    
-    List<String> Text = new ArrayList<String>();
-    boolean Analyze;
-    boolean Format;
-    String TempText = "";
-    
-    int Index;
-    
-    List<String> TextFormatted = new ArrayList<String>();
-    
-    public void run(){
-    
-        while (true) {            
-            
-            if(Analyze){
-                
-                for(int i =0;i<Text.size();i++){
-                    
-                    for(int e=0;e<Text.get(i).length();e++){
-                        
-                        char a = '<';
-                        char b = '>';
-                        
-                        if(Text.get(i).charAt(e) == a){
-                            Format = true;
-                        }
-                        if(Text.get(i).charAt(e) == b){
-                            Format = false;
-                        }
-                        if(Format == false){
-                            if(Index > 0){
-                           TempText = TempText + Text.get(i).charAt(e);
-                            }
-                            Index ++;
-                        }else{
-                        Index = 0;
-                        }
-                        
-                    }
+public class FormatResponseText extends Thread {
 
-                    TextFormatted.add(TempText);
-                    TempText = "";
+    public List<String> FormatText(List<String> text) {
+
+        int Index = 0;
+        List<String> TextFormatted = new ArrayList<String>();
+        
+        boolean Format = false;
+        String TempText = "";
+
+        for (int i = 0; i < text.size(); i++) {
+
+            for (int e = 0; e < text.get(i).length(); e++) {
+
+                char a = '<';
+                char b = '>';
+
+                if (text.get(i).charAt(e) == a) {
+                    Format = true;
+                }
+                if (text.get(i).charAt(e) == b) {
+                    Format = false;
+                }
+                if (Format == false) {
+                    if (Index > 0) {
+                        TempText = TempText + text.get(i).charAt(e);
+                    }
+                    Index++;
+                } else {
+                    Index = 0;
                 }
 
-                Analyze = false;
             }
-            
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(FormatResponseText.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            String toLowerCase = TempText.toLowerCase();
+            toLowerCase = toLowerCase.replaceAll("brasil", "");
+            TempText = "";
+            String Stext = toLowerCase;
+
+                    char a = '[';
+                    char b = ']';
+                    
+                    for(int u =0;u<Stext.length();u++)
+                    if(Stext.charAt(u) == a || Stext.charAt(u) == b)
+                    TempText = TempText;
+                    else
+                    TempText = TempText + Stext.charAt(u);
+                    List<String> split = new ArrayList<String>();
+                    String[] Split = TempText.split("\\r?\\n");
+                    for(String y : Split)
+                    split.add(y);
+                    
+                    for(int o =0;o<split.size();o++)
+                    if(o == 0 || o > 1)
+                    TextFormatted.add(split.get(o).replace('.', ' '));
+                    else
+                    TextFormatted.add(split.get(o));
+                    
         }
-        
+
+        return TextFormatted;
     }
-    
-    public void SetText(List<String> text){
-        Text = text;
-        
-        int f=0;
-        if(f == 0){
-        for(int i=0;i<TextFormatted.size();i++){
-            TextFormatted.remove(i);
-        }
-        f = 1;
-        
-        Analyze = true;
-    }
-    }
-   public List<String> GetTextFormatted(){
-        
-    return TextFormatted;
-    }
+
 }

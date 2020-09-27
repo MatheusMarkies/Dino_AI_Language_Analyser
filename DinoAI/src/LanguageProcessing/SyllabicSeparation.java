@@ -9,16 +9,16 @@ package LanguageProcessing;
  *
  * @author Matheus Markies
  */
-public class SyllabicSeparation extends Thread{
- 
+public class SyllabicSeparation extends Thread {
+
     String[] TextSyllabicSeparation;
-    
-    public SyllabicSeparation(String Text){
-        
+
+    public SyllabicSeparation(String Text) {
+
     }
-    
-    public String[] GetSyllabicSeparation(){
+
+    public String[] GetSyllabicSeparation() {
         return TextSyllabicSeparation;
     }
-    
+
 }

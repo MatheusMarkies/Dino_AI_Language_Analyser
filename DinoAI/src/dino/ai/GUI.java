@@ -15,11 +15,10 @@ import javax.swing.JTextField;
 public class GUI extends javax.swing.JFrame {
 
     JTextField tf;
-    
+
     /**
      * Creates new form GUI
      */
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,8 +66,8 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     VerbDrive.SetTextAnalyze(tf.getText());
-     LanguageProcessingManager.UserText = tf.getText();
+        VerbDrive.SetTextAnalyze(tf.getText());
+        LanguageProcessingManager.UserText = tf.getText();
         System.out.println(tf.getText());
         tf.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed

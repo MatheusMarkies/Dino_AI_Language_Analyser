@@ -28,16 +28,15 @@ import sun.misc.IOUtils;
  * @author Matheus Markies
  */
 public class DinoAI {
-    
-    static String test = "Save our friends take'em back to space"; 
-    
+
+    static String test = "Save our friends take'em back to space";
+
     public static void main(String[] args) throws IOException {
 
         LanguageProcessingManager Drive = new LanguageProcessingManager();
         Thread threadDrive = new Thread((Runnable) Drive);
         threadDrive.start();
-        
 
     }
-    
+
 }

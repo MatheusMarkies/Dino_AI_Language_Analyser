@@ -15,38 +15,36 @@ import java.util.logging.Logger;
  *
  * @author Matheus Markies
  */
-public class ChatInformationStorage extends Thread{
-    
+public class ChatInformationStorage extends Thread {
+
     String Name;
     String[] Creator;
-    
-    //personal informations
-    public void run(){
-        while (true) {            
 
-        if(HumanTesting){
-            
-            Name = null;
-            Creator = null;
-            
-        }else{
-        Name = "Dino";
-        Creator[0] = "Matheus Markies";
-        }
-        
-        if(Creator == null){
-            
-            
-            
-        }
-        
+    //personal informations
+    public void run() {
+        while (true) {
+
+            if (HumanTesting) {
+
+                Name = null;
+                Creator = null;
+
+            } else {
+                Name = "Dino";
+                Creator[0] = "Matheus Markies";
+            }
+
+            if (Creator == null) {
+
+            }
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ChatInformationStorage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
-    
+
 }

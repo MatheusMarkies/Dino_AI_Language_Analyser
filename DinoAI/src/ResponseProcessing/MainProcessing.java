@@ -19,70 +19,67 @@ import org.jsoup.select.Elements;
  *
  * @author Matheus Markies
  */
-public class MainProcessing extends Thread{
-    
+public class MainProcessing extends Thread {
+
     String DictionaryLink = "https://www.dicio.com.br/";
-    String Doubt;
+    static String Doubt;
     boolean Analyze;
-    
-    boolean isDoubtful;
-    
+
+    static boolean isDoubtful;
+
     Document doc;
-    
+
     List<String> Texts = new ArrayList<String>();
-    
-    public void run(){
-        
-        while (true) {            
-         
+
+    public void run() {
+
+        while (true) {
+
             //if(Analyze){
-                
-                if(isDoubtful){
-                String url = DictionaryLink + Doubt+"/";
+            if (isDoubtful) {
+                String url = DictionaryLink + Doubt + "/";
                 try {
                     doc = Jsoup.connect(url).get();
                 } catch (IOException ex) {
                     Logger.getLogger(MainProcessing.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               Elements paragraphs = doc.select("p");
-               Element firstParagraph = paragraphs.first();
-               
-               Elements text = firstParagraph.select("span");
-               Texts.add(text.toString());
-                        
-               dino.ai.LanguageProcessingManager.FRT.SetText(Texts);
-               
+                Elements paragraphs = doc.select("p");
+                Element firstParagraph = paragraphs.first();
+
+                Elements text = firstParagraph.select("span");
+                Texts.add(text.toString());
+
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MainProcessing.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-                System.out.println(dino.ai.LanguageProcessingManager.FRT.GetTextFormatted());
-                
-                
-                
-               isDoubtful = false;  
+
+                FormatResponseText FRT = new FormatResponseText();
+                System.out.println(FRT.FormatText(Texts));
+
+                isDoubtful = false;
             }
-            
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(MainProcessing.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
-        
+
     }
-    
-    public void SetDoubt(String setDoubt){
-        
+
+    public void setDoubt(String setDoubt) {
+
         Doubt = setDoubt;
         isDoubtful = true;
     }
-    public List<String> GetTextAnswer(){
-        
-    return Texts;
+
+    public List<String> getTextAnswer() {
+
+        return Texts;
     }
-    
+
 }
